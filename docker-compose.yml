@@ -1,7 +1,6 @@
-version: '3.6'
+version: "3.6"
 
 services:
-
   database:
     image: "mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04"
     command: /bin/bash ./entrypoint.sh
@@ -14,13 +13,13 @@ services:
       - ./docker/mssql/entrypoint.sh:/entrypoint.sh
       - ./docker/mssql/dbinit.sh:/dbinit.sh
       - ./docker/mssql/dbinit.sql:/dbinit.sql
-    ports: 
+    ports:
       - ${DB_PORT}:1433
 
   license:
     image: danielolalb/totvs_protheus_ls
     container_name: protheus_license
-    
+
   dbaccess:
     build: ./docker/totvs-dbaccess-docker
     container_name: protheus_dbaccess
@@ -33,7 +32,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_NAME=${DB_NAME}
-    depends_on: 
+    depends_on:
       - database
       - license
 
@@ -42,7 +41,7 @@ services:
     container_name: protheus_appserver
     ports:
       - 9999:9999
-      - 8080:8080
+      - 5433:5433
     user: root
     environment:
       - DBACCESS_SERVER=${DBACCESS_SERVER}
@@ -51,7 +50,7 @@ services:
     volumes:
       - ${PROTHEUS_DATA_PATH}:/totvs12/protheus_data
       - ${PROTHEUS_APO_PATH}:/totvs12/protheus/apo
-    depends_on: 
+    depends_on:
       - dbaccess
       - license
 

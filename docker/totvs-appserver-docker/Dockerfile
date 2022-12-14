@@ -1,6 +1,6 @@
 FROM centos:7
 
-LABEL maintainer "Daniel Albuquerque <daniel.alb.querque@gmail.com>"
+LABEL maintainer "Ricardo de Paula <ricardobpaula@gmail.com>"
 
 RUN yum -y update \
     && yum -y install \
@@ -26,6 +26,7 @@ ADD 22-03-15-P12_APPSERVER_BUILD-20.3.0.8_LINUX_X64.TAR.GZ /totvs12/protheus/bin
 RUN /build/setup.sh
 
 EXPOSE 9999
+EXPOSE 5433
 
 VOLUME ["/totvs12/protheus_data", "/totvs12/protheus/apo/"]
 

@@ -9,9 +9,30 @@ Arquivos necessarios: https://drive.google.com/drive/folders/1XzxgZrCf4l79nsoCWI
 Copie o arquivo o arquivo tar.gz do appserver para docker/totvs-appserver-docker e tar.gz do dbaccess para docker/totvs-dbaccess-docker.
 
 # Ambiente
+
 Crie uma copia do arquivo env-example com o nome .env
 
 Descompacte o arquivo "protheus12.zip" dentro do diretorio "docker" ou modifique as variaveis de ambiente no arquivo .env
 
+## Ambiente Windows
+
+
+
 # Execucao
 docker-compose up -d
+
+# Problemas e Soluções
+
+- Problema: Erro na execução de scripts no Windows
+
+Solução:
+
+> Sempre salvar os aquivos .sh com end of line LF.
+
+- Problema: Falha ao conectar ao banco
+
+Solução: 
+
+> Verificar versão do arquivo /opt/microsoft/msodbcsql17/lib64/libmsodbcsql dentro do container dbaccess
+
+> caso divergente da versão no docker/totvs-dbaccess-docker/build/odbc.ini corrigir e subir container novamente

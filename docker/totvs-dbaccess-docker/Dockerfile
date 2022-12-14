@@ -1,6 +1,6 @@
 FROM centos:7
 
-LABEL maintainer "Daniel Albuquerque <daniel.alb.querque@gmail.com>"
+LABEL maintainer "Ricardo de Paula <ricardobpaula@gmail.com>"
 
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo \
     && yum -y update \
