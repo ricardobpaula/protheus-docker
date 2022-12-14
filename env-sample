@@ -2,15 +2,17 @@ DB_TYPE=mssql
 DB_HOST=protheus_mssql
 DB_PORT=1433
 DB_USER=sa
-DB_PASS=A123456b
+DB_PASS=protheus123@
 DB_NAME=PROTHEUS
 
 DBACCESS_SERVER=protheus_dbaccess
 DBACCESS_ALIAS=PROTHEUS
 DBACCESS_PORT=7890
 
-PROTHEUS_DATA_PATH=C:\\protheus\\protheus_data
-PROTHEUS_APO_PATH=C:\\protheus\\protheus\\apo
+PROTHEUS_DATA_PATH=C:/protheus/protheus_data
+PROTHEUS_APO_PATH=C:/protheus/apo
+
+PROTHEUS_INI_MAIN=/ini/main
 
 LICENSE_SERVER=protheus_license
 LICENSE_SERVER_PORT=5555
