@@ -37,7 +37,11 @@ services:
       - license
 
   appserver:
-    build: ./docker/totvs-appserver-docker
+    build:
+      context: ./docker/totvs-appserver-docker
+      dockerfile: ./Dockerfile
+      args:
+        PROTHEUS_INI: ${PROTHEUS_INI_MAIN}
     container_name: protheus_appserver
     ports:
       - 9999:9999

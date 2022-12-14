@@ -8,6 +8,11 @@ mkdir -p $TOTVS_PATH/protheus/{apo,bin/appserver}
 
 cd $TOTVS_PATH/protheus/bin/appserver/
 
+# webapp
+mkdir $TOTVS_PATH/protheus/bin/appserver/webapp
+cp /build/webapp.so $TOTVS_PATH/protheus/bin/appserver/webapp/
+cp /build/webapp.so $TOTVS_PATH/protheus/bin/appserver/
+
 chmod 777 $TOTVS_PATH/protheus/bin/appserver/*.so
 
 echo $TOTVS_PATH/"protheus/bin/appserver/" > /etc/ld.so.conf.d/appserver64-libs.conf
