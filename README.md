@@ -14,11 +14,10 @@ Crie uma copia do arquivo env-example com o nome .env
 
 Descompacte o arquivo "protheus12.zip" dentro do diretorio "docker" ou modifique as variaveis de ambiente no arquivo .env
 
-## Ambiente Windows
-
-
+Adicione o webapp.so na pasta build
 
 # Execucao
+
 docker-compose up -d
 
 # Problemas e Soluções
@@ -31,8 +30,14 @@ Solução:
 
 - Problema: Falha ao conectar ao banco
 
-Solução: 
+Solução:
 
 > Verificar versão do arquivo /opt/microsoft/msodbcsql17/lib64/libmsodbcsql dentro do container dbaccess
 
 > caso divergente da versão no docker/totvs-dbaccess-docker/build/odbc.ini corrigir e subir container novamente
+
+- Problema: Versão de appserver/dbaccess
+
+Solução:
+
+> Baixar a versão mais recente dos binarios linux substituindo o nome do arquivo.tar.gz no Dockerfile de cada container
