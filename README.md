@@ -14,6 +14,13 @@ Crie uma copia do arquivo env-example com o nome .env
 
 Descompacte o arquivo "protheus12.zip" dentro do diretorio "docker" ou modifique as variaveis de ambiente no arquivo .env
 
+## Webapp
+
+Adicione a flag:
+
+[WEBAPP]
+port=5433
+
 Adicione o webapp.so na pasta build
 
 # Execucao

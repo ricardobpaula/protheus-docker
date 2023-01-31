@@ -29,9 +29,6 @@ ADD 22-10-10-P12_APPSERVER_BUILD-20.3.1.0_LINUX_X64.TAR.GZ /totvs12/protheus/bin
 
 RUN /build/setup.sh
 
-EXPOSE 9999
-EXPOSE 5433
-
 VOLUME ["/totvs12/protheus_data", "/totvs12/protheus/apo/"]
 
 WORKDIR /totvs12/protheus/bin/appserver
