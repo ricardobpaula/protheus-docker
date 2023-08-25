@@ -4,13 +4,13 @@ LABEL maintainer "Ricardo de Paula <ricardobpaula@gmail.com>"
 
 RUN yum -y update \
     && yum -y install \
-        dmidecode \
-        fontconfig \
-        glib2 \
-        glibc \
-        libstdc++ \
-        libuuid \
-        wget \
+    dmidecode \
+    fontconfig \
+    glib2 \
+    glibc \
+    libstdc++ \
+    libuuid \
+    wget \
     && rm -rf /var/cache/yum/* \
     && yum clean all
 
@@ -25,7 +25,7 @@ ARG PROTHEUS_INI
 
 ADD $PROTHEUS_INI/appserver.ini /build/appserver.ini
 
-ADD 22-10-10-P12_APPSERVER_BUILD-20.3.1.0_LINUX_X64.TAR.GZ /totvs12/protheus/bin/appserver
+ADD APPSERVER.TAR.GZ /totvs12/protheus/bin/appserver
 
 RUN /build/setup.sh
 

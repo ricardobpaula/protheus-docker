@@ -6,7 +6,9 @@ Arquivos necessarios: https://drive.google.com/drive/folders/1XzxgZrCf4l79nsoCWI
 
 # Binarios
 
-Copie o arquivo o arquivo tar.gz do appserver para docker/totvs-appserver-docker e tar.gz do dbaccess para docker/totvs-dbaccess-docker.
+-   Copie o arquivo tar.gz renomeando para APPSERVER.TAR.GZ do appserver para docker/totvs-appserver-docker.
+
+-   Copie o arquivo tar.gz renomeando para DBACCESS.TAR.GZ do dbaccess para docker/totvs-dbaccess-docker.
 
 # Ambiente
 
@@ -29,13 +31,13 @@ docker-compose up -d
 
 # Problemas e Soluções
 
-- Problema: Erro na execução de scripts no Windows
+-   Problema: Erro na execução de scripts no Windows
 
 Solução:
 
 > Sempre salvar os aquivos .sh com end of line LF.
 
-- Problema: Falha ao conectar ao banco
+-   Problema: Falha ao conectar ao banco
 
 Solução:
 
@@ -43,7 +45,7 @@ Solução:
 
 > caso divergente da versão no docker/totvs-dbaccess-docker/build/odbc.ini corrigir e subir container novamente
 
-- Problema: Versão de appserver/dbaccess
+-   Problema: Versão de appserver/dbaccess
 
 Solução:
 

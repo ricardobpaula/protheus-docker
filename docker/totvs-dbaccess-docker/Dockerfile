@@ -5,9 +5,9 @@ LABEL maintainer "Ricardo de Paula <ricardobpaula@gmail.com>"
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo \
     && yum -y update \
     && yum -y install \
-      postgresql \
-      postgresql-odbc \
-      wget \
+    postgresql \
+    postgresql-odbc \
+    wget \
     && ACCEPT_EULA=Y yum install -y msodbcsql17 \
     && rm -rf /var/cache/yum/* \
     && yum clean all
@@ -17,7 +17,7 @@ RUN DUMB_INIT_SHA256="37f2c1f0372a45554f1b89924fbb134fc24c3756efaedf11e07f599494
     && echo "37f2c1f0372a45554f1b89924fbb134fc24c3756efaedf11e07f599494e0eff9 */usr/bin/dumb-init" | sha256sum -c - \
     && chmod +x /usr/bin/dumb-init
 
-ADD 22-10-10-TOTVS_DBACCESS_BUILD_22.1.1.0_LINUX_X64.TAR.GZ /opt/totvs/dbaccess64
+ADD DBACCESS.TAR.GZ /opt/totvs/dbaccess64
 
 COPY /build /build
 
