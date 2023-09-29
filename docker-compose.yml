@@ -13,6 +13,7 @@ services:
       - ./docker/mssql/entrypoint.sh:/entrypoint.sh
       - ./docker/mssql/dbinit.sh:/dbinit.sh
       - ./docker/mssql/dbinit.sql:/dbinit.sql
+      - ${PROTHEUS_BACKUP}:/var/opt/mssql/data
     ports:
       - ${DB_PORT}:1433
 
