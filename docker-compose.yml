@@ -13,7 +13,7 @@ services:
       - ./docker/mssql/entrypoint.sh:/entrypoint.sh
       - ./docker/mssql/dbinit.sh:/dbinit.sh
       - ./docker/mssql/dbinit.sql:/dbinit.sql
-      - ${PROTHEUS_BACKUP}:/var/opt/mssql/data
+      - ${PROTHEUS_DB}:/var/opt/mssql/data
     ports:
       - ${DB_PORT}:1433
 
@@ -33,6 +33,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_NAME=${DB_NAME}
+      - TZ=${TIME_ZONE}
     depends_on:
       - database
       - license
@@ -51,6 +52,7 @@ services:
       - DBACCESS_SERVER=${DBACCESS_SERVER}
       - DBACCESS_ALIAS=${DBACCESS_ALIAS}
       - DBACCESS_PORT=${DBACCESS_PORT}
+      - TZ=${TIME_ZONE}
     volumes:
       - ${PROTHEUS_DATA_PATH}:/totvs12/protheus_data
       - ${PROTHEUS_APO_PATH}:/totvs12/protheus/apo
@@ -67,6 +69,29 @@ services:
     container_name: protheus_appserver_rest
     ports:
       - 9998:9998
+      - 3002:3002
+    user: root
+    environment:
+      - DBACCESS_SERVER=${DBACCESS_SERVER}
+      - DBACCESS_ALIAS=${DBACCESS_ALIAS}
+      - DBACCESS_PORT=${DBACCESS_PORT}
+      - TZ=${TIME_ZONE}
+    volumes:
+      - ${PROTHEUS_DATA_PATH}:/totvs12/protheus_data
+      - ${PROTHEUS_APO_PATH}:/totvs12/protheus/apo
+    depends_on:
+      - dbaccess
+      - license
+
+  appserver-ws:
+    build:
+      context: ./docker/totvs-appserver-docker
+      dockerfile: ./Dockerfile
+      args:
+          PROTHEUS_INI: ${PROTHEUS_INI_WS}
+    container_name: protheus_appserver_ws
+    ports:
+      - 9997:9997
       - 3000:3000
       - 3001:3001
     user: root
@@ -74,6 +99,7 @@ services:
       - DBACCESS_SERVER=${DBACCESS_SERVER}
       - DBACCESS_ALIAS=${DBACCESS_ALIAS}
       - DBACCESS_PORT=${DBACCESS_PORT}
+      - TZ=${TIME_ZONE}
     volumes:
       - ${PROTHEUS_DATA_PATH}:/totvs12/protheus_data
       - ${PROTHEUS_APO_PATH}:/totvs12/protheus/apo
