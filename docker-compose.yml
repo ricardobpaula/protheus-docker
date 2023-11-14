@@ -66,7 +66,7 @@ services:
       dockerfile: ./Dockerfile
       args:
         PROTHEUS_INI: ${PROTHEUS_INI_REST}
-    container_name: protheus_appserver_rest
+    container_name: protheus_rest
     ports:
       - 9998:9998
       - 3002:3002
@@ -89,7 +89,7 @@ services:
       dockerfile: ./Dockerfile
       args:
           PROTHEUS_INI: ${PROTHEUS_INI_WS}
-    container_name: protheus_appserver_ws
+    container_name: protheus_ws
     ports:
       - 9997:9997
       - 3000:3000

@@ -19,4 +19,4 @@ do
     sleep 0.5
 done
 
-exec "/totvs12/protheus/bin/appserver/appsrvlinux"
+exec "/totvs12/protheus/bin/appserver/appsrvlinux" && tail -f -n 1 "console.log"
