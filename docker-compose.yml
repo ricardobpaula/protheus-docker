@@ -18,8 +18,20 @@ services:
       - ${DB_PORT}:1433
 
   license:
-    image: danielolalb/totvs_protheus_ls
+    image: lucascience/totvs-licenseserver-3.4.2
     container_name: protheus_license
+    environment:
+      TZ: 'America/Sao_Paulo'
+      LD_LIBRARY_PATH: '/totvs/license/bin/appserver/:.'
+    working_dir: '/totvs/license/bin/appserver/'
+    command:
+      - ./appsrvlinux
+    ports:
+      - '2234:2234'
+      - '5555:5555'
+      - '8020:8020'
+    volumes:
+    - ${PROTHEUS_LICENSE_INI}:/totvs/license/bin/appserver/appserver.ini
 
   dbaccess:
     build: ./docker/totvs-dbaccess-docker
