@@ -1,0 +1,38 @@
+FROM centos:7
+
+LABEL maintainer "Ricardo de Paula <ricardobpaula@gmail.com>"
+
+RUN yum -y update \
+    && yum -y install \
+    dmidecode \
+    fontconfig \
+    glib2 \
+    glibc \
+    libstdc++ \
+    libuuid \
+    wget \
+    && rm -rf /var/cache/yum/* \
+    && yum clean all
+
+RUN DUMB_INIT_SHA256="37f2c1f0372a45554f1b89924fbb134fc24c3756efaedf11e07f599494e0eff9" \
+    && wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 \
+    && echo "37f2c1f0372a45554f1b89924fbb134fc24c3756efaedf11e07f599494e0eff9 */usr/bin/dumb-init" | sha256sum -c - \
+    && chmod +x /usr/bin/dumb-init
+
+COPY /build /build
+
+ARG PROTHEUS_INI
+
+ADD $PROTHEUS_INI/appserver.ini /build/appserver.ini
+
+ADD LICENSE.TAR.GZ /totvs12
+
+RUN /build/setup.sh
+
+# VOLUME ["/totvs12"]
+
+WORKDIR /totvs12
+
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+
+CMD [ "/usr/local/bin/my-init.sh" ]

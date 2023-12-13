@@ -18,21 +18,22 @@ services:
       - ${DB_PORT}:1433
 
   license:
-    image: lucascience/totvs-licenseserver-3.4.2
+    build:
+      context: ./docker/totvs-license-docker
+      dockerfile: ./Dockerfile
+      args:
+        PROTHEUS_INI: ${PROTHEUS_LICENSE_INI}
     container_name: protheus_license
-    environment:
-      TZ: 'America/Sao_Paulo'
-      LD_LIBRARY_PATH: '/totvs/license/bin/appserver/:.'
-    working_dir: '/totvs/license/bin/appserver/'
-    command:
-      - ./appsrvlinux
     ports:
-      - '2234:2234'
-      - '5555:5555'
-      - '8020:8020'
-    volumes:
-    - ${PROTHEUS_LICENSE_INI}:/totvs/license/bin/appserver/appserver.ini
-
+      - 5555:5555
+      - 8020:8020
+    user: root
+    environment:
+      - DBACCESS_SERVER=${DBACCESS_SERVER}
+      - DBACCESS_ALIAS=${DBACCESS_ALIAS}
+      - DBACCESS_PORT=${DBACCESS_PORT}
+      - TZ=${TIME_ZONE}
+  
   dbaccess:
     build: ./docker/totvs-dbaccess-docker
     container_name: protheus_dbaccess
