@@ -26,7 +26,7 @@ services:
     container_name: protheus_license
     ports:
       - 5555:5555
-      - 8020:8020
+      - 2234:2234
     user: root
     environment:
       - DBACCESS_SERVER=${DBACCESS_SERVER}
@@ -112,6 +112,7 @@ services:
       - DBACCESS_SERVER=${DBACCESS_SERVER}
       - DBACCESS_ALIAS=${DBACCESS_ALIAS}
       - DBACCESS_PORT=${DBACCESS_PORT}
+      - SERVER_IP=${SERVER_IP}
       - TZ=${TIME_ZONE}
     volumes:
       - ${PROTHEUS_DATA_PATH}:/totvs12/protheus_data
