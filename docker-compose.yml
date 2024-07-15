@@ -82,6 +82,7 @@ services:
     container_name: protheus_rest
     ports:
       - 9998:9998
+      - 3003:3003
       - 3002:3002
     user: root
     environment:
